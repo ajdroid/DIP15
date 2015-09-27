@@ -76,13 +76,12 @@ def lloydmax(img, L, uniform = False ,intensityRange = [0,255]):
 	plt.plot(hist)
 	plt.xlim(intensityRange)
 
+if __name__ == "main":
+	img = cv2.imread('../flower.jpg',0)
+	cv2.imshow('flower',img)
+	lloydmax(img, 8)
+	lloydmax(img, 8, True)
 
-
-img = cv2.imread('../flower.jpg',0)
-cv2.imshow('flower',img)
-lloydmax(img, 8)
-lloydmax(img, 8, True)
-
-# plt.hist(img.ravel(),8,[0,256])
-plt.show()
+	# plt.hist(img.ravel(),8,[0,256])
+	plt.show()
 
