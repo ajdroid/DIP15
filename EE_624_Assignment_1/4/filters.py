@@ -1,3 +1,4 @@
+# sizes of 3/5/7 work best
 import numpy as np 
 import sys
 sys.path.append('/usr/local/lib/python2.7/site-packages')
