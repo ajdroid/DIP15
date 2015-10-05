@@ -1,6 +1,6 @@
 # sizes of 3/5/7 work best
 import numpy as np 
-# np.set_printoptions(suppress=True, precision=3) 
+np.set_printoptions(suppress=True, precision=3) 
 
 import sys
 sys.path.append('/usr/local/lib/python2.7/site-packages')
@@ -45,7 +45,7 @@ def bilateralFilter(src, sigmad, sigmar, size = 5):
 					print Wd
 					print Wr
 					
-	print Wd
+	print Wr
 				
 
 	return src
@@ -56,17 +56,16 @@ spnoisy = cv2.imread('../spnoisy.jpg',0)
 unifnoisy = cv2.imread('../unifnoisy.jpg',0)
 # spunifnoisy = cv2.imread('../spunifnoisy.jpg',0)
 
-for i in [0.01, 0.05, 10]:
-	dst = bilateralFilter(unifnoisy,10,i)
+for i in [10, 14, 18]:
+	dst = bilateralFilter(unifnoisy,i*i,4*i*i)
 	cv2.imshow('unifnoise cleared ' + str(i), dst)
+	cv2.imshow('unifnoise cleared cv' + str(i), cv2.adaptiveBilateralFilter(unifnoisy,(5,5),i))
 
 # cv2.imshow('spnoisy', spnoisy)
 # for i in [3,5]:
 # 	dst = medianFilter(spnoisy,i)
 # 	cv2.imshow('spnoise cleared ' + str(i), dst)
 # 	# cv2.imshow('spnoise cleared cv ' + str(i), cv2.medianBlur(spnoisy,i))
-
-	
 
 cv2.waitKey(0)
 
