@@ -50,20 +50,22 @@ spnoisy = cv2.imread('../spnoisy.jpg',0)
 unifnoisy = cv2.imread('../unifnoisy.jpg',0)
 spunifnoisy = cv2.imread('../spunifnoisy.jpg',0)
 
-# for i in [10, 14, 18]:
-# 	dst = bilateralFilter(unifnoisy,i*i,4*i*i)
+for i in [10]:
+	dst = bilateralFilter(unifnoisy,i*i,4*i*i)
 # 	cv2.imshow('unifnoise cleared ' + str(i), dst)
-# 	cv2.imshow('unifnoise cleared cv' + str(i), cv2.adaptiveBilateralFilter(unifnoisy,(5,5),i))
-
+	cv2.imshow('unifnoise cleared cvb' + str(i)+'.jpg', cv2.adaptiveBilateralFilter(unifnoisy,(5,5),i))
+	cv2.imshow('spunifnoise cleared cvb' + str(i)+'.jpg', cv2.adaptiveBilateralFilter(spunifnoisy,(5,5),i))
+	cv2.imshow('spnoise cleared cvb' + str(i)+'.jpg', cv2.adaptiveBilateralFilter(spnoisy,(5,5),i))
 # cv2.imshow('spnoisy', spnoisy)
 for i in [3,5]:
 	dst = medianFilter(spnoisy,i)
 	# cv2.imshow('spnoise cleared ' + str(i), dst)
-	# cv2.imshow('spnoise cleared cv ' + str(i), cv2.medianBlur(spnoisy,i))
+	cv2.imshow('spnoise cleared cv m' + str(i)+'.jpg', cv2.medianBlur(spnoisy,i))
+	cv2.imshow('spunifnoise cleared cv m' + str(i)+'.jpg', cv2.medianBlur(spunifnoisy,i))
+	cv2.imshow('uninoise cleared cv m' + str(i)+'.jpg', cv2.medianBlur(unifnoisy,i))
 
-# cv2.waitKey(0)
+cv2.waitKey(0)
 
 
 
 # dst = cv2.filter2D()
-

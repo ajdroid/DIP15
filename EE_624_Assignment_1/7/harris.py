@@ -64,24 +64,22 @@ def nonmaxSupress( resp, winLen, G ):
 img = cv2.imread('../IITG.jpg', 1)
 imgBW = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 candidates = harrisCorners(imgBW, 2, 3)
-# dsp = cv2.cornerHarris(imgBW,2,5,0.04)
-# print dsp.min()
-# print dsp.max()
 dsp = cv2.dilate(candidates, None)
-# dsp = cv2.dilate(dsp, None)
 
-G = dsp>0.01*dsp.max()
+
+G = dsp>0.0005*dsp.max()
 resp = np.full(imgBW.shape, dsp.min())
 resp[G] = dsp[G]
 print resp.min()
 print resp.max()
 print resp.shape
 
-indexer = nonmaxSupress(resp, 3, G)
+indexer = nonmaxSupress(resp, 1, G)
 img[indexer]=[0,0,255]
-# img[G] = [0,0,255]
+
 print dsp.min()
 print dsp.max()
 
-cv2.imshow('Shit went down', img)
+cv2.imshow('Harris Corners (in red)', img)
+cv2.imwrite('HC.jpg', img)
 cv2.waitKey(0)
